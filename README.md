@@ -14,7 +14,7 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 
 <!-- DAILY_VERSE_START -->
 <!-- DAILY_VERSE_START -->
-## Today's Verse ($(date +%Y-%m-%d))
+## Today's Verse (2025-07-13)
 │                    TERMINAL BIBLE                       │
 ROMANS 8 28                                          NKJV
 1: We know that all things work together for good
