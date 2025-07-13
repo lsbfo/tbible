@@ -8,6 +8,10 @@ on:
     branches: [ main ]
     paths: [ 'src/**', '.github/workflows/**', 'Cargo.toml' ]
 
+permissions:
+  contents: write
+  actions: read
+
 env:
   CARGO_TERM_COLOR: always
 
@@ -34,10 +38,8 @@ jobs:
     - name: Fetch daily Bible verse
       run: |
         echo "Fetching daily Bible verse..."
-        # Run the terminal-bible CLI with no arguments to get daily verse
         ./target/release/terminal-bible > data/daily-verse-$(date +%Y-%m-%d).txt 2>&1
         
-        # Show what we captured
         echo "Captured verse:"
         cat data/daily-verse-$(date +%Y-%m-%d).txt
         
@@ -52,6 +54,7 @@ jobs:
           grep -v "^$" | \
           head -20)
         
+        # Create temp file with new content (safer approach)
         cat > temp_readme_section << EOF
         <!-- DAILY_VERSE_START -->
         ## Today's Verse ($(date +%Y-%m-%d))
@@ -87,8 +90,11 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Daily Bible Verse Update - $(date +%Y-%m-%d)"
-          git push
+          git commit -m "📖 Daily Bible verse update - $(date +%Y-%m-%d)"
+          
+          # Push using the GitHub token
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          
           echo "Successfully pushed daily verse update!"
         fi
 
