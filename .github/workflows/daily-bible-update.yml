@@ -43,22 +43,36 @@ jobs:
         
     - name: Update README with latest verse
       run: |
-        # Update the README with today's verse
-        VERSE_CONTENT=$(cat data/daily-verse-$(date +%Y-%m-%d).txt)
+        # Clean the verse content for README (remove ANSI codes and fancy chars)
+        VERSE_CONTENT=$(cat data/daily-verse-$(date +%Y-%m-%d).txt | \
+          sed 's/\x1b\[[0-9;]*m//g' | \
+          sed 's/[╭╮╰╯─━❝✳]//g' | \
+          sed 's/^[ ]*//g' | \
+          grep -v "^TERMINAL BIBLE$" | \
+          grep -v "^$" | \
+          head -20)
         
-        # Use a more robust sed command
-        sed -i '/<!-- DAILY_VERSE_START -->/,/<!-- DAILY_VERSE_END -->/c\
-        <!-- DAILY_VERSE_START -->\
-        ## Today'\''s Verse ($(date +%Y-%m-%d))\
-        \
-        ```\
-        '"$VERSE_CONTENT"'\
-        ```\
-        \
-        *Updated automatically via GitHub Actions*\
-        <!-- DAILY_VERSE_END -->' README.md
+        cat > temp_readme_section << EOF
+        <!-- DAILY_VERSE_START -->
+        ## Today's Verse ($(date +%Y-%m-%d))
         
-        echo "README updated with today's verse"
+        \`\`\`
+        $VERSE_CONTENT
+        \`\`\`
+        
+        *Updated automatically via GitHub Actions*
+        <!-- DAILY_VERSE_END -->
+        EOF
+        
+        # Replace the section using file insertion (safer)
+        sed -i '/<!-- DAILY_VERSE_START -->/,/<!-- DAILY_VERSE_END -->/{ 
+          r temp_readme_section
+          d
+        }' README.md
+        
+        # Cleanup
+        rm temp_readme_section
+        echo "README updated with clean verse content"
         
     - name: Commit and push changes
       run: |
@@ -73,12 +87,11 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "📖 Daily Bible verse update - $(date +%Y-%m-%d)"
+          git commit -m "Daily Bible Verse Update - $(date +%Y-%m-%d)"
           git push
           echo "Successfully pushed daily verse update!"
         fi
 
-  # Test the CLI to make sure it works
   test-terminal-bible-cli:
     runs-on: ubuntu-latest
     
@@ -99,4 +112,3 @@ jobs:
         ./target/release/terminal-bible
         echo "Testing specific verse:"
         ./target/release/terminal-bible john3-16
-

@@ -28,6 +28,54 @@ cd terminal-bible
 ./bible john3-16
 ```
 
+## Installation
+
+### Method 1: Build Script (Recommended)
+```bash
+git clone https://github.com/clintaire/terminal-bible.git
+cd terminal-bible
+chmod +x build.sh
+./build.sh
+./bible john3-16
+```
+
+### Method 2: Manual Build
+```bash
+cargo build --release
+cp ./target/release/terminal-bible ./bible
+./bible
+```
+
+### Method 3: Global Install
+```bash
+cargo install --path .
+# Creates ~/.cargo/bin/terminal-bible (add ~/.cargo/bin to PATH)
+terminal-bible john3-16     # Works from anywhere
+```
+
+### Method 4: Homebrew (macOS/Linux)
+```bash
+# After publishing to Homebrew (future)
+brew install terminal-bible
+terminal-bible john3-16
+
+# Or install from source via Homebrew
+brew install --HEAD https://github.com/clintaire/terminal-bible.git
+```
+
+### Method 5: Docker
+```bash
+# Build Docker image
+docker build -t terminal-bible .
+
+# Run with Docker
+docker run --rm terminal-bible john3-16
+
+# Or create alias for easier use
+alias bible='docker run --rm terminal-bible'
+bible psalm23:1
+```
+
 ## Commands
 
 The CLI is designed for fast, natural typing with flexible syntax:
@@ -79,31 +127,6 @@ col, 1th, 2th, 1tim, 2tim, tit, phlm, heb, jas, 1pet,
 2pet, 1jn, 2jn, 3jn, jude, rev
 ```
 
-## Installation
-
-### Method 1: Build Script (Recommended)
-```bash
-git clone https://github.com/clintaire/terminal-bible.git
-cd terminal-bible
-chmod +x build.sh
-./build.sh
-./bible john3-16
-```
-
-### Method 2: Manual Build
-```bash
-cargo build --release
-cp ./target/release/terminal-bible ./bible
-./bible
-```
-
-### Method 3: Global Install
-```bash
-cargo install --path .
-# Creates ~/.cargo/bin/terminal-bible (add ~/.cargo/bin to PATH)
-terminal-bible john3-16     # Works from anywhere
-```
-
 ## Usage Examples
 
 ### Daily Reading
@@ -139,6 +162,89 @@ terminal-bible john3-16     # Works from anywhere
 ./bible john3vs16
 ```
 
+## Testing
+
+### Local Testing (Recommended)
+```bash
+# Create scripts directory and test script
+mkdir -p scripts
+cat > scripts/test.sh << 'EOF'
+#!/bin/bash
+set -e
+echo "=== Testing Terminal Bible Workflow ==="
+cargo build --release
+mkdir -p data/
+./target/release/terminal-bible > data/daily-verse-$(date +%Y-%m-%d).txt 2>&1
+echo "Raw output:"
+cat data/daily-verse-$(date +%Y-%m-%d).txt
+VERSE_CONTENT=$(cat data/daily-verse-$(date +%Y-%m-%d).txt | \
+  sed 's/\x1b\[[0-9;]*m//g' | \
+  sed 's/[╭╮╰╯─━❝✳]//g' | \
+  sed 's/^[ ]*//g' | \
+  grep -v "^TERMINAL BIBLE$" | \
+  grep -v "^$" | \
+  head -20)
+echo "Cleaned content:"
+echo "$VERSE_CONTENT"
+echo "=== ✅ Test completed successfully! ==="
+EOF
+
+chmod +x scripts/test.sh
+./scripts/test.sh
+```
+
+### GitHub Actions Simulation with Act
+```bash
+# Install act (GitHub Actions runner)
+# macOS:
+brew install act
+
+# Ubuntu/Debian:
+curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
+# Make sure Docker is running
+sudo systemctl start docker  # Linux
+# or
+open -a Docker              # macOS
+
+# Test the workflow locally
+act workflow_dispatch
+
+# Test specific job
+act -j update-daily-verse
+
+# Test with specific event
+act push
+```
+
+### Docker Testing
+```bash
+# Build test image
+docker build -t terminal-bible-test .
+
+# Test daily verse
+docker run --rm terminal-bible-test
+
+# Test specific verse
+docker run --rm terminal-bible-test john3-16
+
+# Interactive testing
+docker run --rm -it terminal-bible-test bash
+./bible psalm23:1
+```
+
+### API Testing
+```bash
+# Test bible-api.com directly
+curl "https://bible-api.com/john+3:16"
+
+# Test with different verses
+curl "https://bible-api.com/psalm+23:1"
+
+# Check API status
+curl -I "https://bible-api.com"
+```
+
 ## Project Structure
 
 ```
@@ -148,6 +254,9 @@ terminal-bible/
 ├── build.sh                # Build script
 ├── bible                   # Compiled binary
 ├── .github/workflows/      # Automation scripts
+├── Dockerfile              # Docker configuration
+├── scripts/                # Utility scripts
+│   └── test.sh            # Local testing script
 └── README.md               # Documentation
 ```
 
@@ -207,26 +316,165 @@ The repository automatically:
 
 **Smart Parsing** - Handles input variations naturally
 
-## Troubleshooting
+## Troubleshooting & Debugging
 
 ### Build Issues
 ```bash
-rustup update               # Update Rust
-cargo clean                 # Clean build cache
-./build.sh                  # Rebuild
+# Update Rust toolchain
+rustup update stable
+rustup default stable
+
+# Clean everything and rebuild
+cargo clean
+rm -f ./bible
+./build.sh
+
+# Check Rust version
+rustc --version
+cargo --version
+
+# Verbose build for debugging
+cargo build --release --verbose
 ```
 
-### Network Issues
+### Runtime Issues
 ```bash
-curl "https://bible-api.com/john+3:16"  # Test API manually
-ping google.com                         # Check internet connection
+# Check if binary exists and is executable
+ls -la ./bible
+file ./bible
+
+# Make sure it's executable
+chmod +x ./bible
+
+# Test with debug output
+RUST_LOG=debug ./bible john3-16
+
+# Test with different book names
+./bible --help          # Should show error (no help implemented)
+./bible invalid-book    # See error handling
 ```
 
-### Command Issues
+### Network/API Issues
 ```bash
-ls -la ./bible              # Check if binary exists
-chmod +x ./bible            # Make executable
-./bible                     # Test with simple command
+# Test internet connectivity
+ping google.com
+
+# Test bible-api.com specifically
+curl -v "https://bible-api.com/john+3:16"
+
+# Test with different verses
+curl "https://bible-api.com/psalm+91:1"
+curl "https://bible-api.com/romans+8:28"
+
+# Check DNS resolution
+nslookup bible-api.com
+
+# Test with proxy (if behind corporate firewall)
+curl --proxy http://proxy:port "https://bible-api.com/john+3:16"
+```
+
+### GitHub Actions Debugging
+```bash
+# Check workflow syntax
+act --list
+
+# Test workflow locally with debug
+act -v workflow_dispatch
+
+# Check specific step
+act -j update-daily-verse --verbose
+
+# Dry run (don't actually run)
+act --dryrun workflow_dispatch
+```
+
+### Docker Issues
+```bash
+# Check Docker is running
+docker --version
+docker info
+
+# Build with debug output
+docker build --no-cache -t terminal-bible .
+
+# Run with shell access for debugging
+docker run --rm -it terminal-bible bash
+
+# Check container logs
+docker logs <container_id>
+
+# Clean up Docker resources
+docker system prune
+```
+
+### Permission Issues
+```bash
+# Linux/macOS: Fix file permissions
+chmod +x build.sh
+chmod +x bible
+
+# Windows: Run in PowerShell as administrator
+# Or use Git Bash with admin privileges
+
+# WSL: Check file system type
+mount | grep $(pwd)
+```
+
+### Performance Debugging
+```bash
+# Time the execution
+time ./bible john3-16
+
+# Check memory usage
+/usr/bin/time -v ./bible psalm23:1  # Linux
+/usr/bin/time -l ./bible psalm23:1  # macOS
+
+# Profile network requests
+strace -e network ./bible john3-16  # Linux only
+
+# Check what files are accessed
+strace -e file ./bible john3-16     # Linux only
+```
+
+### Common Error Solutions
+
+**"command not found"**
+```bash
+# Make sure you're in the right directory
+pwd
+ls -la bible
+
+# Check PATH (for global install)
+echo $PATH
+which terminal-bible
+```
+
+**"Permission denied"**
+```bash
+chmod +x ./bible
+chmod +x build.sh
+```
+
+**"Connection refused" or "Network error"**
+```bash
+# Check internet connection
+ping 8.8.8.8
+
+# Check if behind firewall
+curl -I https://bible-api.com
+
+# Try different DNS
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+```
+
+**"Verse not found"**
+```bash
+# Check book name spelling
+./bible list  # (if implemented)
+
+# Try different abbreviations
+./bible psalm23:1    # instead of ps23:1
+./bible john3-16     # instead of jn3-16
 ```
 
 ## Advanced Usage
@@ -240,12 +488,29 @@ chmod +x ./bible            # Make executable
 ```bash
 ./bible psalm23:1 | grep "shepherd"
 ./bible john3-16 | wc -w              # Word count
+./bible romans8:28 | fold -w 40       # Wrap text at 40 chars
 ```
 
 ### Create Reading Plans
 ```bash
+# Daily reading file
 ./bible psalm ch 1 > daily_reading.txt
 ./bible psalm ch 2 >> daily_reading.txt
+
+# Weekly plan
+for i in {1..7}; do ./bible psalm ch $i >> weekly_plan.txt; done
+```
+
+### Integration with Other Tools
+```bash
+# Use with cron for daily notifications
+echo "0 8 * * * cd /path/to/terminal-bible && ./bible | mail -s 'Daily Verse' user@example.com" | crontab -
+
+# Use with tmux status bar
+tmux set-option -g status-right "#(cd /path/to/terminal-bible && ./bible | head -1)"
+
+# Use with conky
+conky -t "$(cd /path/to/terminal-bible && ./bible)"
 ```
 
 ## License
@@ -257,13 +522,15 @@ MIT License - feel free to use, modify, and distribute.
 1. Fork the repository
 2. Make your changes (the code is straightforward)
 3. Test with `./build.sh && ./bible john3-16`
-4. Submit a pull request
+4. Run `./scripts/test.sh` to verify everything works
+5. Submit a pull request
 
 ## Support
 
 - **Issues:** Use GitHub Issues
 - **Feature requests:** Open an issue with your idea  
 - **API problems:** Check [bible-api.com](https://bible-api.com) status
+- **Testing:** Use `./scripts/test.sh` to verify functionality locally
 
 ---
 
