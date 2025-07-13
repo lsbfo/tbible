@@ -54,10 +54,13 @@ jobs:
           grep -v "^$" | \
           head -20 > verse_content.txt
         
+        # Store today's date in a variable
+        TODAY_DATE=$(date +%Y-%m-%d)
+        
         # Generate daily verse section
-        cat > new_daily_section.md << 'EOF'
+        cat > new_daily_section.md << EOF
         <!-- DAILY_VERSE_START -->
-        ## Today's Verse ($(date +%Y-%m-%d))
+        ## Today's Verse ($TODAY_DATE)
         EOF
         cat verse_content.txt >> new_daily_section.md
         cat >> new_daily_section.md << 'EOF'
@@ -91,7 +94,7 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "📖 Daily Bible verse update - $(date +%Y-%m-%d)"
+          git commit -m "Daily Bible verse update - $(date +%Y-%m-%d)"
           
           # Push using the GitHub token
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
