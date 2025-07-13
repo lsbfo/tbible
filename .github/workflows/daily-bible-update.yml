@@ -25,7 +25,7 @@ jobs:
         toolchain: stable
         override: true
         
-    - name: Build bible CLI
+    - name: Build terminal-bible CLI
       run: cargo build --release
       
     - name: Create data directory
@@ -34,8 +34,8 @@ jobs:
     - name: Fetch daily Bible verse
       run: |
         echo "Fetching daily Bible verse..."
-        # Run the bible CLI with no arguments to get daily verse
-        ./target/release/bible > data/daily-verse-$(date +%Y-%m-%d).txt 2>&1
+        # Run the terminal-bible CLI with no arguments to get daily verse
+        ./target/release/terminal-bible > data/daily-verse-$(date +%Y-%m-%d).txt 2>&1
         
         # Show what we captured
         echo "Captured verse:"
@@ -78,8 +78,8 @@ jobs:
           echo "Successfully pushed daily verse update!"
         fi
 
-  # Optional: Test the CLI to make sure it works
-  test-bible-cli:
+  # Test the CLI to make sure it works
+  test-terminal-bible-cli:
     runs-on: ubuntu-latest
     
     steps:
@@ -96,7 +96,7 @@ jobs:
       run: |
         cargo build --release
         echo "Testing daily verse:"
-        ./target/release/bible
+        ./target/release/terminal-bible
         echo "Testing specific verse:"
-        ./target/release/bible john3-16
-        echo "CLI tests completed successfully!"
+        ./target/release/terminal-bible john3-16
+

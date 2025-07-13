@@ -150,27 +150,53 @@ async fn fetch_and_display(reference: &str) -> Result<()> {
                 .replace(":", " ")
                 .to_uppercase();
             
-            // Properly sized box and text
-            let box_width = 59;  // Match the visual box
-            let text_width = 51; // Text should be narrower than box
-            
+            // Beautiful header with perfect version alignment
             println!();
             println!("    ╭─────────────────────────────────────────────────────────╮");
             println!("    │                    TERMINAL BIBLE                       │");
             println!("    ╰─────────────────────────────────────────────────────────╯");
             println!();
-            println!("    ❝ {}", clean_ref);
-            println!("    {}", "━".repeat(box_width));
+            
+            // Reference with Bible version perfectly aligned on the right
+            let version = "NKJV"; // bible-api.com uses New King James Version
+            let total_width = 59;
+            let ref_len = clean_ref.len() + 2; // +2 for "❝ "
+            let version_len = version.len();
+            let spaces_needed = total_width - ref_len - version_len;
+            
+            println!("    ❝ {}{}{}", clean_ref, " ".repeat(spaces_needed), version);
+            println!("    {}", "━".repeat(total_width));
             println!();
             
-            for verse in &api_response.verses {
-                let wrapped_text = wrap_text(verse.text.trim(), text_width);
-                for line in wrapped_text.lines() {
-                    println!("      {}", line);
+            // Display verses with proper spacing and verse numbers
+            for (i, verse) in api_response.verses.iter().enumerate() {
+                // Add extra spacing between verses for longer chapters
+                if i > 0 {
+                    println!(); // Empty line between verses
+                }
+                
+                // Calculate verse number (assuming verses start from 1)
+                let verse_num = i + 1;
+                let verse_indicator = format!("{}:", verse_num);
+                
+                let wrapped_text = wrap_text(verse.text.trim(), 48); // Leave room for verse number
+                
+                // Display verse with bold verse number
+                let lines: Vec<&str> = wrapped_text.lines().collect();
+                for (line_idx, line) in lines.iter().enumerate() {
+                    if line_idx == 0 {
+                        // First line gets the bold verse number
+                        println!("      \x1b[1m{}\x1b[0m {}", verse_indicator, line);
+                    } else {
+                        // Subsequent lines are indented to align with text
+                        let indent = " ".repeat(verse_indicator.len() + 1);
+                        println!("      {}{}", indent, line);
+                    }
                 }
             }
+            
             println!();
-            println!("    {}", "━".repeat(box_width));
+            println!("    {}", "━".repeat(total_width));
             println!();
         } else {
             println!();
@@ -210,3 +236,4 @@ fn wrap_text(text: &str, width: usize) -> String {
     
     lines.join("\n")
 }
+
