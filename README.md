@@ -63,19 +63,6 @@ terminal-bible john3-16
 brew install --HEAD https://github.com/clintaire/terminal-bible.git
 ```
 
-### Method 5: Docker
-```bash
-# Build Docker image
-docker build -t terminal-bible .
-
-# Run with Docker
-docker run --rm terminal-bible john3-16
-
-# Or create alias for easier use
-alias bible='docker run --rm terminal-bible'
-bible psalm23:1
-```
-
 ## Commands
 
 The CLI is designed for fast, natural typing with flexible syntax:
@@ -193,44 +180,26 @@ chmod +x scripts/test.sh
 ./scripts/test.sh
 ```
 
-### GitHub Actions Simulation with Act
+### Manual Component Testing
 ```bash
-# Install act (GitHub Actions runner)
-# macOS:
-brew install act
+# Test CLI directly
+cargo build --release
+./target/release/terminal-bible john3-16
 
-# Ubuntu/Debian:
-curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
-
-# Make sure Docker is running
-sudo systemctl start docker  # Linux
-# or
-open -a Docker              # macOS
-
-# Test the workflow locally
-act workflow_dispatch
-
-# Test specific job
-act -j update-daily-verse
-
-# Test with specific event
-act push
+# Test different formats
+./target/release/terminal-bible psalm ch 23
+./target/release/terminal-bible mt5:3
 ```
 
-### Docker Testing
+### GitHub Actions Testing
 ```bash
-# Build test image
-docker build -t terminal-bible-test .
+# Push changes and monitor in GitHub Actions
+git add .
+git commit -m "Test changes"
+git push
 
-# Test daily verse
-docker run --rm terminal-bible-test
-
-# Test specific verse
-docker run --rm terminal-bible-test john3-16
-
-# Interactive testing
-docker run --rm -it terminal-bible-test bash
-./bible psalm23:1
+# Then go to: GitHub → Actions → "Daily Bible Verse Update"
+# Click "Run workflow" to test manually
 ```
 
 ### API Testing
@@ -254,9 +223,8 @@ terminal-bible/
 ├── build.sh                # Build script
 ├── bible                   # Compiled binary
 ├── .github/workflows/      # Automation scripts
-├── Dockerfile              # Docker configuration
 ├── scripts/                # Utility scripts
-│   └── test.sh            # Local testing script
+│   └── test.sh             # Local testing script
 └── README.md               # Documentation
 ```
 
@@ -375,36 +343,15 @@ curl --proxy http://proxy:port "https://bible-api.com/john+3:16"
 
 ### GitHub Actions Debugging
 ```bash
-# Check workflow syntax
-act --list
+# Check GitHub Actions in the web interface
+# Go to: Repository → Actions → Workflow runs
+# Click on a specific run to see detailed logs
 
-# Test workflow locally with debug
-act -v workflow_dispatch
+# Check workflow syntax locally
+grep -n "name:" .github/workflows/*.yml
 
-# Check specific step
-act -j update-daily-verse --verbose
-
-# Dry run (don't actually run)
-act --dryrun workflow_dispatch
-```
-
-### Docker Issues
-```bash
-# Check Docker is running
-docker --version
-docker info
-
-# Build with debug output
-docker build --no-cache -t terminal-bible .
-
-# Run with shell access for debugging
-docker run --rm -it terminal-bible bash
-
-# Check container logs
-docker logs <container_id>
-
-# Clean up Docker resources
-docker system prune
+# Validate YAML syntax
+python3 -c "import yaml; yaml.safe_load(open('.github/workflows/daily-bible-update.yml'))"
 ```
 
 ### Permission Issues

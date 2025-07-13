@@ -1,22 +1,56 @@
-# Rust
+# Rust build artifacts
 /target/
-Cargo.lock
 
-# Binary
+# Compiled binaries
 ./bible
 ./terminal-bible
 
-# User data
+# User config
 /.tbible/
 
-# IDE/Editor  
+# Data files
+data/*.tmp
+data/*.temp
+data/*.bak
+!data/daily-verse-*.txt
+!data/popular-verses
+
+# IDE/Editor files
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# OS
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Logs
+# Log files
 *.log
-# Scripts are tracked
+
+# Build directories
+/build/
+/dist/
+/out/
+
+# Coverage reports
+/coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local

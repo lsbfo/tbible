@@ -45,7 +45,7 @@ jobs:
         
     - name: Update README with latest verse
       run: |
-        # Clean the verse content for README (remove ANSI codes and fancy chars)
+        # Clean the verse content for README
         VERSE_CONTENT=$(cat data/daily-verse-$(date +%Y-%m-%d).txt | \
           sed 's/\x1b\[[0-9;]*m//g' | \
           sed 's/[╭╮╰╯─━❝✳]//g' | \
@@ -54,27 +54,28 @@ jobs:
           grep -v "^$" | \
           head -20)
         
-        # Create temp file with new content (safer approach)
-        cat > temp_readme_section << EOF
-        <!-- DAILY_VERSE_START -->
-        ## Today's Verse ($(date +%Y-%m-%d))
+        # Use awk to replace the section (much more reliable)
+        awk -v verse="$VERSE_CONTENT" -v date="$(date +%Y-%m-%d)" '
+        /<!-- DAILY_VERSE_START -->/ { 
+            print "<!-- DAILY_VERSE_START -->"
+            print "## Today'\''s Verse (" date ")"
+            print ""
+            print "```"
+            print verse
+            print "```"
+            print ""
+            print "*Updated automatically via GitHub Actions*"
+            print "<!-- DAILY_VERSE_END -->"
+            skip=1
+            next
+        }
+        /<!-- DAILY_VERSE_END -->/ {
+            skip=0
+            next
+        }
+        !skip { print }
+        ' README.md > README_temp.md && mv README_temp.md README.md
         
-        \`\`\`
-        $VERSE_CONTENT
-        \`\`\`
-        
-        *Updated automatically via GitHub Actions*
-        <!-- DAILY_VERSE_END -->
-        EOF
-        
-        # Replace the section using file insertion (safer)
-        sed -i '/<!-- DAILY_VERSE_START -->/,/<!-- DAILY_VERSE_END -->/{ 
-          r temp_readme_section
-          d
-        }' README.md
-        
-        # Cleanup
-        rm temp_readme_section
         echo "README updated with clean verse content"
         
     - name: Commit and push changes
@@ -90,7 +91,7 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "📖 Daily Bible verse update - $(date +%Y-%m-%d)"
+          git commit -m "Daily Bible verse update - $(date +%Y-%m-%d)"
           
           # Push using the GitHub token
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
