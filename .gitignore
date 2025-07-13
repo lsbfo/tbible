@@ -1,1 +1,21 @@
-/target
+# Rust
+/target/
+Cargo.lock
+
+# Binary
+./bible
+./terminal-bible
+
+# User data
+/.tbible/
+
+# IDE/Editor  
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
