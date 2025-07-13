@@ -1,0 +1,102 @@
+name: Daily Bible Verse Update
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+  workflow_dispatch:     # Manual trigger
+  push:
+    branches: [ main ]
+    paths: [ 'src/**', '.github/workflows/**', 'Cargo.toml' ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  update-daily-verse:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+        
+    - name: Build bible CLI
+      run: cargo build --release
+      
+    - name: Create data directory
+      run: mkdir -p data/
+      
+    - name: Fetch daily Bible verse
+      run: |
+        echo "Fetching daily Bible verse..."
+        # Run the bible CLI with no arguments to get daily verse
+        ./target/release/bible > data/daily-verse-$(date +%Y-%m-%d).txt 2>&1
+        
+        # Show what we captured
+        echo "Captured verse:"
+        cat data/daily-verse-$(date +%Y-%m-%d).txt
+        
+    - name: Update README with latest verse
+      run: |
+        # Update the README with today's verse
+        VERSE_CONTENT=$(cat data/daily-verse-$(date +%Y-%m-%d).txt)
+        
+        # Use a more robust sed command
+        sed -i '/<!-- DAILY_VERSE_START -->/,/<!-- DAILY_VERSE_END -->/c\
+        <!-- DAILY_VERSE_START -->\
+        ## Today'\''s Verse ($(date +%Y-%m-%d))\
+        \
+        ```\
+        '"$VERSE_CONTENT"'\
+        ```\
+        \
+        *Updated automatically via GitHub Actions*\
+        <!-- DAILY_VERSE_END -->' README.md
+        
+        echo "README updated with today's verse"
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Bot"
+        
+        # Add the files
+        git add data/
+        git add README.md
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "📖 Daily Bible verse update - $(date +%Y-%m-%d)"
+          git push
+          echo "Successfully pushed daily verse update!"
+        fi
+
+  # Optional: Test the CLI to make sure it works
+  test-bible-cli:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+        
+    - name: Build and test CLI
+      run: |
+        cargo build --release
+        echo "Testing daily verse:"
+        ./target/release/bible
+        echo "Testing specific verse:"
+        ./target/release/bible john3-16
+        echo "CLI tests completed successfully!"
