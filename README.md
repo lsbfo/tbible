@@ -13,69 +13,9 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-13)
+## Today's Verse
 
-```
-│                    TERMINAL BIBLE                       │
-ROMANS 8 28                                          NKJV
-1: We know that all things work together for good
-for those who love God, to those who are called
-according to his purpose.
-```
-
-*Updated automatically via GitHub Actions*
-<!-- DAILY_VERSE_END -->
-<!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-13)
-
-```
-│                    TERMINAL BIBLE                       │
-ROMANS 8 28                                          NKJV
-1: We know that all things work together for good
-for those who love God, to those who are called
-according to his purpose.
-```
-
-*Updated automatically via GitHub Actions*
-<!-- DAILY_VERSE_END -->
-<!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-13)
-
-```
-│                    TERMINAL BIBLE                       │
-ROMANS 8 28                                          NKJV
-1: We know that all things work together for good
-for those who love God, to those who are called
-according to his purpose.
-```
-
-*Updated automatically via GitHub Actions*
-<!-- DAILY_VERSE_END -->
-<!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-13)
-
-```
-│                    TERMINAL BIBLE                       │
-ROMANS 8 28                                          NKJV
-1: We know that all things work together for good
-for those who love God, to those who are called
-according to his purpose.
-```
-
-*Updated automatically via GitHub Actions*
-<!-- DAILY_VERSE_END -->
-<!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-13)
-
-```
-│                    TERMINAL BIBLE                       │
-ROMANS 8 28                                          NKJV
-1: We know that all things work together for good
-for those who love God, to those who are called
-according to his purpose.
-```
-
-*Updated automatically via GitHub Actions*
+*This section will be automatically updated by GitHub Actions*
 <!-- DAILY_VERSE_END -->
 
 ## Quick Start

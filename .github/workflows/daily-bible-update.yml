@@ -46,37 +46,37 @@ jobs:
     - name: Update README with latest verse
       run: |
         # Clean the verse content for README
-        VERSE_CONTENT=$(cat data/daily-verse-$(date +%Y-%m-%d).txt | \
+        cat data/daily-verse-$(date +%Y-%m-%d).txt | \
           sed 's/\x1b\[[0-9;]*m//g' | \
           sed 's/[╭╮╰╯─━❝✳]//g' | \
           sed 's/^[ ]*//g' | \
           grep -v "^TERMINAL BIBLE$" | \
           grep -v "^$" | \
-          head -20)
+          head -20 > verse_content.txt
         
-        # Use awk to replace the section (much more reliable)
-        awk -v verse="$VERSE_CONTENT" -v date="$(date +%Y-%m-%d)" '
-        /<!-- DAILY_VERSE_START -->/ { 
-            print "<!-- DAILY_VERSE_START -->"
-            print "## Today'\''s Verse (" date ")"
-            print ""
-            print "```"
-            print verse
-            print "```"
-            print ""
-            print "*Updated automatically via GitHub Actions*"
-            print "<!-- DAILY_VERSE_END -->"
-            skip=1
-            next
-        }
-        /<!-- DAILY_VERSE_END -->/ {
-            skip=0
-            next
-        }
-        !skip { print }
-        ' README.md > README_temp.md && mv README_temp.md README.md
+        # Generate daily verse section
+        cat > new_daily_section.md << 'EOF'
+        <!-- DAILY_VERSE_START -->
+        ## Today's Verse ($(date +%Y-%m-%d))
+        EOF
+        cat verse_content.txt >> new_daily_section.md
+        cat >> new_daily_section.md << 'EOF'
+        <!-- DAILY_VERSE_END -->
+        EOF
         
-        echo "README updated with clean verse content"
+        # Update README at the correct position
+        awk '
+        {
+          print
+        }
+        /<!-- DAILY_VERSE_START -->/ {
+          while (getline && !/<!-- DAILY_VERSE_END -->/) {}
+          system("cat new_daily_section.md")
+          next
+        }' README.md > README.md.new
+        
+        # Replace old README with updated one
+        mv README.md.new README.md
         
     - name: Commit and push changes
       run: |
@@ -91,7 +91,7 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Daily Bible verse update - $(date +%Y-%m-%d)"
+          git commit -m "📖 Daily Bible verse update - $(date +%Y-%m-%d)"
           
           # Push using the GitHub token
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
