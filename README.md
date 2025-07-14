@@ -13,19 +13,12 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2023-07-14)
-
-```
-┌─────────────────────────────────────────────────────┐
-│                    TERMINAL BIBLE                   │
-├─────────────────────────────────────────────────────┤
-│ ROMANS 8:28                                   NKJV  │
-│                                                     │
-│ We know that all things work together for good      │
-│ for those who love God, to those who are called     │
-│ according to his purpose.                           │
-└─────────────────────────────────────────────────────┘
-```
+<!-- DAILY_VERSE_START -->
+## Today's Verse (2025-07-14)
+│                    TERMINAL BIBLE                       │
+PHILIPPIANS 4 13                                     NKJV
+1: I can do all things through Christ, who
+strengthens me.
 <!-- DAILY_VERSE_END -->
 
 ## Quick Start
