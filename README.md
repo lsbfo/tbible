@@ -1,31 +1,18 @@
-# Terminal Bible CLI
-
-A minimal, fast terminal Bible reader with intuitive commands and daily verses.
-
-## Features
-
-- Ultra-fast startup with minimal dependencies
-- Short, memorable commands (`./bible john3-16`)
-- Daily verse rotation through popular scriptures  
-- Smart parsing for multiple input formats
-- Complete Bible support with book abbreviations
-- API-powered for always fresh content
-- Automated daily updates via GitHub Actions
-
 <!-- DAILY_VERSE_START -->
 ## Today's Verse (2025-07-15)
+
 
     ╭─────────────────────────────────────────────────────────╮
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ PSALM 91 1                                       NKJV
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    ❝ PSALM 91 1                                           NKJV
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
       1: He who dwells in the secret place of the Most
          High will rest in the shadow of the Almighty.
 
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
 
 
