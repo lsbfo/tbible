@@ -45,14 +45,9 @@ jobs:
         
     - name: Update README with latest verse
       run: |
-        # Clean the verse content for README
+        # Clean the verse content for README, but preserve formatting
         cat data/daily-verse-$(date +%Y-%m-%d).txt | \
-          sed 's/\x1b\[[0-9;]*m//g' | \
-          sed 's/[╭╮╰╯─━❝✳]//g' | \
-          sed 's/^[ ]*//g' | \
-          grep -v "^TERMINAL BIBLE$" | \
-          grep -v "^$" | \
-          head -20 > verse_content.txt
+          sed 's/\x1b\[[0-9;]*m//g' > verse_content.txt
         
         # Store today's date in a variable
         TODAY_DATE=$(date +%Y-%m-%d)
@@ -61,25 +56,18 @@ jobs:
         cat > new_daily_section.md << EOF
         <!-- DAILY_VERSE_START -->
         ## Today's Verse ($TODAY_DATE)
+
         EOF
         cat verse_content.txt >> new_daily_section.md
         cat >> new_daily_section.md << 'EOF'
         <!-- DAILY_VERSE_END -->
         EOF
         
-        # Update README at the correct position
-        awk '
-        {
-          print
-        }
-        /<!-- DAILY_VERSE_START -->/ {
-          while (getline && !/<!-- DAILY_VERSE_END -->/) {}
-          system("cat new_daily_section.md")
-          next
-        }' README.md > README.md.new
-        
-        # Replace old README with updated one
-        mv README.md.new README.md
+        # Update README directly with sed
+        sed -i '
+          /<!-- DAILY_VERSE_START -->/,/<!-- DAILY_VERSE_END -->/c\
+          '"$(cat new_daily_section.md)"'
+        ' README.md
         
     - name: Commit and push changes
       run: |

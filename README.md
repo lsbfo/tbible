@@ -13,13 +13,21 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-<!-- DAILY_VERSE_START -->
 ## Today's Verse (2025-07-15)
-│                    TERMINAL BIBLE                       │
-PSALM 91 1                                           NKJV
-1: He who dwells in the secret place of the Most
-High will rest in the shadow of the Almighty.
+
+    ╭─────────────────────────────────────────────────────────╮
+    │                    TERMINAL BIBLE                       │
+    ╰─────────────────────────────────────────────────────────╯
+
+    ❝ PSALM 91 1                                       NKJV
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+      1: He who dwells in the secret place of the Most
+         High will rest in the shadow of the Almighty.
+
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
+
 
 ## Quick Start
 
