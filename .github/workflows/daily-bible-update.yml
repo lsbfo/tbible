@@ -54,6 +54,7 @@ jobs:
         
         # Create a temporary file
         awk -v date="$TODAY_DATE" -v verse="$(cat verse_content.txt)" '
+        BEGIN { p = 1 }
         /<!-- DAILY_VERSE_START -->/ {
           print "<!-- DAILY_VERSE_START -->";
           print "## Today'\''s Verse (" date ")\n";
