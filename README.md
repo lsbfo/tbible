@@ -14,11 +14,11 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 
 <!-- DAILY_VERSE_START -->
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-14)
+## Today's Verse (2025-07-15)
 │                    TERMINAL BIBLE                       │
-PHILIPPIANS 4 13                                     NKJV
-1: I can do all things through Christ, who
-strengthens me.
+PSALM 91 1                                           NKJV
+1: He who dwells in the secret place of the Most
+High will rest in the shadow of the Almighty.
 <!-- DAILY_VERSE_END -->
 
 ## Quick Start
