@@ -52,22 +52,25 @@ jobs:
         # Store today's date in a variable
         TODAY_DATE=$(date +%Y-%m-%d)
         
-        # Generate daily verse section
-        cat > new_daily_section.md << EOF
-        <!-- DAILY_VERSE_START -->
-        ## Today's Verse ($TODAY_DATE)
-
-        EOF
-        cat verse_content.txt >> new_daily_section.md
-        cat >> new_daily_section.md << 'EOF'
-        <!-- DAILY_VERSE_END -->
-        EOF
+        # Create a temporary file
+        awk -v date="$TODAY_DATE" -v verse="$(cat verse_content.txt)" '
+        /<!-- DAILY_VERSE_START -->/ {
+          print "<!-- DAILY_VERSE_START -->";
+          print "## Today'\''s Verse (" date ")\n";
+          print verse;
+          p = 0;
+          next;
+        }
+        /<!-- DAILY_VERSE_END -->/ {
+          print;
+          p = 1;
+          next;
+        }
+        p { print }
+        ' README.md > README.tmp
         
-        # Update README directly with sed
-        sed -i '
-          /<!-- DAILY_VERSE_START -->/,/<!-- DAILY_VERSE_END -->/c\
-          '"$(cat new_daily_section.md)"'
-        ' README.md
+        # Replace the original file
+        mv README.tmp README.md
         
     - name: Commit and push changes
       run: |
