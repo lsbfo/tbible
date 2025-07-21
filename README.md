@@ -13,17 +13,20 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-20)
+## Today's Verse (2025-07-21)
 
 
     ╭─────────────────────────────────────────────────────────╮
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ 1JOHN 4 19                                           NKJV
+    ❝ ISAIAH 40 31                                         NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: We love him, because he first loved us.
+      1: But those who wait for Yahweh will renew their
+         strength. They will mount up with wings like
+         eagles. They will run, and not be weary. They
+         will walk, and not faint.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
