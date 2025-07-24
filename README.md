@@ -13,19 +13,17 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-23)
+## Today's Verse (2025-07-24)
 
 
     ╭─────────────────────────────────────────────────────────╮
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ JOHN 3 16                                            NKJV
+    ❝ PSALM 23 1                                           NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: For God so loved the world, that he gave his one
-         and only Son, that whoever believes in him
-         should not perish, but have eternal life.
+      1: Yahweh is my shepherd: I shall lack nothing.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
