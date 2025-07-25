@@ -13,17 +13,19 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-24)
+## Today's Verse (2025-07-25)
 
 
     ╭─────────────────────────────────────────────────────────╮
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ PSALM 23 1                                           NKJV
+    ❝ ROMANS 8 28                                          NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: Yahweh is my shepherd: I shall lack nothing.
+      1: We know that all things work together for good
+         for those who love God, to those who are called
+         according to his purpose.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
