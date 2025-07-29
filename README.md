@@ -13,19 +13,18 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-28)
+## Today's Verse (2025-07-29)
 
 
     ╭─────────────────────────────────────────────────────────╮
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ JEREMIAH 29 11                                       NKJV
+    ❝ PROVERBS 3 5                                         NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: For I know the thoughts that I think toward
-         you,” says Yahweh, “thoughts of peace, and
-         not of evil, to give you hope and a future.
+      1: Trust in Yahweh with all your heart, and don’t
+         lean on your own understanding.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
