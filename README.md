@@ -13,18 +13,18 @@ A minimal, fast terminal Bible reader with intuitive commands and daily verses.
 - Automated daily updates via GitHub Actions
 
 <!-- DAILY_VERSE_START -->
-## Today's Verse (2025-07-30)
+## Today's Verse (2025-07-31)
 
 
     ╭─────────────────────────────────────────────────────────╮
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ PSALM 46 1                                           NKJV
+    ❝ MATTHEW 5 3                                          NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: God is our refuge and strength, a very present
-         help in trouble.
+      1: “Blessed are the poor in spirit, for theirs is
+         the Kingdom of Heaven.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
