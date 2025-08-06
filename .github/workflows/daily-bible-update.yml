@@ -57,7 +57,7 @@ jobs:
         BEGIN { p = 1 }
         /<!-- DAILY_VERSE_START -->/ {
           print "<!-- DAILY_VERSE_START -->";
-          print "## Today'\''s Verse (" date ")\n";
+          print "## Daily Verse\n";
           print verse;
           p = 0;
           next;
