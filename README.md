@@ -10,6 +10,7 @@ A lightweight command-line tool for reading Bible verses directly in your termin
 <!-- DAILY_VERSE_START -->
 ## Daily Verse
 
+
     ╭─────────────────────────────────────────────────────────╮
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
