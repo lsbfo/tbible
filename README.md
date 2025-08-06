@@ -7,7 +7,7 @@
 
 A lightweight command-line tool for reading Bible verses directly in your terminal.
 
-[API](#api) — [Book Abbreviations](#book-abbreviations) — [Install](#install) — [License](#license) — [Usage](#usage)
+[API](#api) — [Install](#install) — [License](#license) — [Usage](#usage)
 
 <!-- DAILY_VERSE_START -->
 ## Daily Verse
