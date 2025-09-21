@@ -86,4 +86,4 @@ This project fetches Bible verses from [bible-api.com](https://bible-api.com), a
 
 ## License
 
-Terminal Bible CLI is available under the MIT License. See [LICENSE](LICENSE) for the full license text.
+[MIT](./LICENSE) &copy; [Clint Airé](https://github.com/clintaire)
