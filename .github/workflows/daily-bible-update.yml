@@ -75,8 +75,8 @@ jobs:
         
     - name: Commit and push changes
       run: |
-        git config --local user.email "111376518+clintaire@users.noreply.github.com"
-        git config --local user.name "Clint Airé"
+        git config --local user.email "232922299+lsbfo@users.noreply.github.com"
+        git config --local user.name "lsbfo"
         
         # Add the files
         git add data/
