@@ -17,13 +17,13 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ ISAIAH 40 31                                         NKJV
+    ❝ ROMANS 12 2                                          NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: But those who wait for Yahweh will renew their
-         strength. They will mount up with wings like
-         eagles. They will run, and not be weary. They
-         will walk, and not faint.
+      1: Don’t be conformed to this world, but be
+         transformed by the renewing of your mind, so
+         that you may prove what is the good,
+         well-pleasing, and perfect will of God.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
