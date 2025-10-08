@@ -17,11 +17,12 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ PSALM 91 1                                           NKJV
+    ❝ JEREMIAH 29 11                                       NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: He who dwells in the secret place of the Most
-         High will rest in the shadow of the Almighty.
+      1: For I know the thoughts that I think toward
+         you,” says Yahweh, “thoughts of peace, and
+         not of evil, to give you hope and a future.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
