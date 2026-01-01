@@ -17,12 +17,10 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ JEREMIAH 29 11                                       NKJV
+    ❝ PSALM 23 1                                           NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: For I know the thoughts that I think toward
-         you,” says Yahweh, “thoughts of peace, and
-         not of evil, to give you hope and a future.
+      1: Yahweh is my shepherd: I shall lack nothing.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
