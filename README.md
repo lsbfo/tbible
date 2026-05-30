@@ -17,11 +17,11 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ PSALM 91 1                                           NKJV
+    ❝ PROVERBS 3 5                                         NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: He who dwells in the secret place of the Most
-         High will rest in the shadow of the Almighty.
+      1: Trust in Yahweh with all your heart, and don’t
+         lean on your own understanding.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
