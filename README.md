@@ -17,12 +17,11 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ ROMANS 8 28                                          NKJV
+    ❝ PHILIPPIANS 4 13                                     NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: We know that all things work together for good
-         for those who love God, to those who are called
-         according to his purpose.
+      1: I can do all things through Christ, who
+         strengthens me.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
