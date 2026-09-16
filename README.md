@@ -17,11 +17,11 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ PROVERBS 3 5                                         NKJV
+    ❝ PSALM 46 1                                           NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: Trust in Yahweh with all your heart, and don’t
-         lean on your own understanding.
+      1: God is our refuge and strength, a very present
+         help in trouble.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
