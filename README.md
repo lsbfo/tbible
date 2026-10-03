@@ -17,13 +17,12 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ ROMANS 12 2                                          NKJV
+    ❝ JOHN 3 16                                            NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: Don’t be conformed to this world, but be
-         transformed by the renewing of your mind, so
-         that you may prove what is the good,
-         well-pleasing, and perfect will of God.
+      1: For God so loved the world, that he gave his one
+         and only Son, that whoever believes in him
+         should not perish, but have eternal life.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
