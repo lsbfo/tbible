@@ -17,12 +17,10 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ JOHN 3 16                                            NKJV
+    ❝ PSALM 23 1                                           NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: For God so loved the world, that he gave his one
-         and only Son, that whoever believes in him
-         should not perish, but have eternal life.
+      1: Yahweh is my shepherd: I shall lack nothing.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
