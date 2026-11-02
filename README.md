@@ -17,12 +17,11 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ JEREMIAH 29 11                                       NKJV
+    ❝ PROVERBS 3 5                                         NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: For I know the thoughts that I think toward
-         you,” says Yahweh, “thoughts of peace, and
-         not of evil, to give you hope and a future.
+      1: Trust in Yahweh with all your heart, and don’t
+         lean on your own understanding.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
