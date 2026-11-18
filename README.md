@@ -17,10 +17,13 @@ A lightweight command-line tool for reading Bible verses directly in your termin
     │                    TERMINAL BIBLE                       │
     ╰─────────────────────────────────────────────────────────╯
 
-    ❝ 1JOHN 4 19                                           NKJV
+    ❝ ISAIAH 40 31                                         NKJV
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-      1: We love him, because he first loved us.
+      1: But those who wait for Yahweh will renew their
+         strength. They will mount up with wings like
+         eagles. They will run, and not be weary. They
+         will walk, and not faint.
 
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <!-- DAILY_VERSE_END -->
